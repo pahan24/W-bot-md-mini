@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SASA MD Pair Site</title>
+</head>
+<body>
+    <h1>SASA MD WhatsApp Bot</h1>
+    <p>Scan the QR below to pair your bot:</p>
+    <div id="qr">
+        <img src="" id="qr-img" />
+    </div>
+    <script>
+        const img = document.getElementById('qr-img');
+        setInterval(async () => {
+            const res = await fetch('/qr');
+            const html = await res.text();
+            const src = html.match(/<img src="([^"]+)"/)[1];
+            if (src) img.src = src;
+        }, 1000);
+    </script>
+</body>
+</html>
